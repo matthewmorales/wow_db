@@ -1,0 +1,1 @@
+json.extract! @stat, :id, :health, :powerType, :power, :str, :agi, :int, :sta, :crit, :haste, :mastery, :bonusArmor, :spellPower, :armor, :parry, :block, :attackPower, :mainHandDps, :rangedAttackPower, :created_at, :updated_at

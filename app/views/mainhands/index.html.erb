@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Mainhands</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quality</th>
+      <th>Itemlevel</th>
+      <th>Context</th>
+      <th>Dps</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mainhands.each do |mainhand| %>
+      <tr>
+        <td><%= mainhand.name %></td>
+        <td><%= mainhand.quality %></td>
+        <td><%= mainhand.itemLevel %></td>
+        <td><%= mainhand.context %></td>
+        <td><%= mainhand.dps %></td>
+        <td><%= link_to 'Show', mainhand %></td>
+        <td><%= link_to 'Edit', edit_mainhand_path(mainhand) %></td>
+        <td><%= link_to 'Destroy', mainhand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mainhand', new_mainhand_path %>

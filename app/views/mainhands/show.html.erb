@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mainhand.name %>
+</p>
+
+<p>
+  <strong>Quality:</strong>
+  <%= @mainhand.quality %>
+</p>
+
+<p>
+  <strong>Itemlevel:</strong>
+  <%= @mainhand.itemLevel %>
+</p>
+
+<p>
+  <strong>Context:</strong>
+  <%= @mainhand.context %>
+</p>
+
+<p>
+  <strong>Dps:</strong>
+  <%= @mainhand.dps %>
+</p>
+
+<%= link_to 'Edit', edit_mainhand_path(@mainhand) %> |
+<%= link_to 'Back', mainhands_path %>

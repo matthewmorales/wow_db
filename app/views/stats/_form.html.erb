@@ -1,0 +1,89 @@
+<%= form_for(@stat) do |f| %>
+  <% if @stat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stat.errors.count, "error") %> prohibited this stat from being saved:</h2>
+
+      <ul>
+      <% @stat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :health %><br>
+    <%= f.number_field :health %>
+  </div>
+  <div class="field">
+    <%= f.label :powerType %><br>
+    <%= f.text_field :powerType %>
+  </div>
+  <div class="field">
+    <%= f.label :power %><br>
+    <%= f.number_field :power %>
+  </div>
+  <div class="field">
+    <%= f.label :str %><br>
+    <%= f.number_field :str %>
+  </div>
+  <div class="field">
+    <%= f.label :agi %><br>
+    <%= f.number_field :agi %>
+  </div>
+  <div class="field">
+    <%= f.label :int %><br>
+    <%= f.number_field :int %>
+  </div>
+  <div class="field">
+    <%= f.label :sta %><br>
+    <%= f.number_field :sta %>
+  </div>
+  <div class="field">
+    <%= f.label :crit %><br>
+    <%= f.text_field :crit %>
+  </div>
+  <div class="field">
+    <%= f.label :haste %><br>
+    <%= f.text_field :haste %>
+  </div>
+  <div class="field">
+    <%= f.label :mastery %><br>
+    <%= f.text_field :mastery %>
+  </div>
+  <div class="field">
+    <%= f.label :bonusArmor %><br>
+    <%= f.number_field :bonusArmor %>
+  </div>
+  <div class="field">
+    <%= f.label :spellPower %><br>
+    <%= f.number_field :spellPower %>
+  </div>
+  <div class="field">
+    <%= f.label :armor %><br>
+    <%= f.number_field :armor %>
+  </div>
+  <div class="field">
+    <%= f.label :parry %><br>
+    <%= f.text_field :parry %>
+  </div>
+  <div class="field">
+    <%= f.label :block %><br>
+    <%= f.text_field :block %>
+  </div>
+  <div class="field">
+    <%= f.label :attackPower %><br>
+    <%= f.number_field :attackPower %>
+  </div>
+  <div class="field">
+    <%= f.label :mainHandDps %><br>
+    <%= f.text_field :mainHandDps %>
+  </div>
+  <div class="field">
+    <%= f.label :rangedAttackPower %><br>
+    <%= f.number_field :rangedAttackPower %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

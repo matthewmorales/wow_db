@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Offhands</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quality</th>
+      <th>Itemlevel</th>
+      <th>Armor</th>
+      <th>Context</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @offhands.each do |offhand| %>
+      <tr>
+        <td><%= offhand.name %></td>
+        <td><%= offhand.quality %></td>
+        <td><%= offhand.itemLevel %></td>
+        <td><%= offhand.armor %></td>
+        <td><%= offhand.context %></td>
+        <td><%= link_to 'Show', offhand %></td>
+        <td><%= link_to 'Edit', edit_offhand_path(offhand) %></td>
+        <td><%= link_to 'Destroy', offhand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Offhand', new_offhand_path %>

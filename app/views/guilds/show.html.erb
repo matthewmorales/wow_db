@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @guild.name %>
+</p>
+
+<p>
+  <strong>Realm:</strong>
+  <%= @guild.realm %>
+</p>
+
+<p>
+  <strong>Battlegroup:</strong>
+  <%= @guild.battlegroup %>
+</p>
+
+<p>
+  <strong>Members:</strong>
+  <%= @guild.members %>
+</p>
+
+<p>
+  <strong>Achievement points:</strong>
+  <%= @guild.achievementPoints %>
+</p>
+
+<p>
+  <% @character.each do |c| %>
+    <%= c.name %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_guild_path(@guild) %> |
+<%= link_to 'Back', guilds_path %>

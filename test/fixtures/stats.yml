@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  health: 1
+  powerType: MyString
+  power: 1
+  str: 1
+  agi: 1
+  int: 1
+  sta: 1
+  crit: 1.5
+  haste: 1.5
+  mastery: 1.5
+  bonusArmor: 1
+  spellPower: 1
+  armor: 1
+  parry: 1.5
+  block: 1.5
+  attackPower: 1
+  mainHandDps: 1.5
+  rangedAttackPower: 1
+
+two:
+  health: 1
+  powerType: MyString
+  power: 1
+  str: 1
+  agi: 1
+  int: 1
+  sta: 1
+  crit: 1.5
+  haste: 1.5
+  mastery: 1.5
+  bonusArmor: 1
+  spellPower: 1
+  armor: 1
+  parry: 1.5
+  block: 1.5
+  attackPower: 1
+  mainHandDps: 1.5
+  rangedAttackPower: 1

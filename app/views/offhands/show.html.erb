@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @offhand.name %>
+</p>
+
+<p>
+  <strong>Quality:</strong>
+  <%= @offhand.quality %>
+</p>
+
+<p>
+  <strong>Itemlevel:</strong>
+  <%= @offhand.itemLevel %>
+</p>
+
+<p>
+  <strong>Armor:</strong>
+  <%= @offhand.armor %>
+</p>
+
+<p>
+  <strong>Context:</strong>
+  <%= @offhand.context %>
+</p>
+
+<%= link_to 'Edit', edit_offhand_path(@offhand) %> |
+<%= link_to 'Back', offhands_path %>

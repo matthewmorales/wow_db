@@ -1,0 +1,37 @@
+<%= form_for(@mainhand) do |f| %>
+  <% if @mainhand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mainhand.errors.count, "error") %> prohibited this mainhand from being saved:</h2>
+
+      <ul>
+      <% @mainhand.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :quality %><br>
+    <%= f.number_field :quality %>
+  </div>
+  <div class="field">
+    <%= f.label :itemLevel %><br>
+    <%= f.number_field :itemLevel %>
+  </div>
+  <div class="field">
+    <%= f.label :context %><br>
+    <%= f.text_field :context %>
+  </div>
+  <div class="field">
+    <%= f.label :dps %><br>
+    <%= f.text_field :dps %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tabard.name %>
+</p>
+
+<p>
+  <strong>Quality:</strong>
+  <%= @tabard.quality %>
+</p>
+
+<p>
+  <strong>Itemlevel:</strong>
+  <%= @tabard.itemLevel %>
+</p>
+
+<p>
+  <strong>Context:</strong>
+  <%= @tabard.context %>
+</p>
+
+<p>
+  <strong>Armor:</strong>
+  <%= @tabard.armor %>
+</p>
+
+<%= link_to 'Edit', edit_tabard_path(@tabard) %> |
+<%= link_to 'Back', tabards_path %>

@@ -50,11 +50,13 @@ class CharactersController < ApplicationController
       armor_response.delete("bonusLists")
       @armor = Armor.new(armor_response)
       @armor.save
+      @character.armor_id = @armor.id
     end
 
-    if stat_response != nil && (@stat = Stat.find_by(:character_id => @character.id)) != nil
-      @character.stat_id = @stat.id
-    elsif stat_response != nil
+    Rails.logger.debug(stat_response)
+
+    if stat_response != nil
+      Rails.logger.debug("********HEY")
       stats = Hash.new
       stats["health"] = stat_response["health"]
       stats["powerType"] = stat_response["powerType"]
@@ -74,9 +76,9 @@ class CharactersController < ApplicationController
       stats["attackPower"] = stat_response["attackPower"]
       stats["rangedAttackPower"] = stat_response["rangedAttackPower"]
       stats["mainHandDps"] = stat_response["mainHandDps"]
-      stats["character_id"] = @character.id
       @stat = Stat.new(stats)
       @stat.save
+      @character.stat_id = @stat.id
     end
 
     if mh_response != nil && (@mainhand = Mainhand.find_by(:name => mh_response["name"], :itemLevel => mh_response["itemLevel"])) != nil
@@ -91,9 +93,10 @@ class CharactersController < ApplicationController
       mh_response.delete("bonusLists")
       @mainhand = Mainhand.new(mh_response)
       @mainhand.save
+      @character.mainhand_id = @mainhand.id
     end
 
-    if oh_response != nil && (@offhand = Offhand.find_by(:name => oh_response["name"], :itemLevel => oh_response["itemLevel"])) != nil
+    if oh_response != nil && (@offhand = Offhand.find_by(:id => oh_response["id"])) != nil
       @character.offhand_id = @offhand.id
     elsif oh_response != nil
       oh_response.delete("icon")
@@ -108,6 +111,7 @@ class CharactersController < ApplicationController
       oh_response.delete("bonusLists")
       @offhand = Offhand.new(oh_response)
       @offhand.save
+      @character.offhand_id = @offhand.id
     end
 
 
@@ -120,6 +124,7 @@ class CharactersController < ApplicationController
       tabard_response.delete("bonusLists")
       @tabard = Tabard.new(tabard_response)
       @tabard.save
+      @character.tabard_id = @tabard.id
     end
 
 
@@ -128,6 +133,7 @@ class CharactersController < ApplicationController
     elsif guild_response != nil
       @guild = Guild.new(guild_response)
       @guild.save
+      @character.guild_id = @guild.id
     end
 
     level  = character["level"]

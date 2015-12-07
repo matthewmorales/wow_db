@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207051043) do
+ActiveRecord::Schema.define(version: 20151207053249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20151207051043) do
     t.integer  "rangedAttackPower"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "character_id"
   end
 
   create_table "tabards", force: :cascade do |t|
@@ -118,4 +119,5 @@ ActiveRecord::Schema.define(version: 20151207051043) do
   add_foreign_key "characters", "offhands"
   add_foreign_key "characters", "stats"
   add_foreign_key "characters", "tabards"
+  add_foreign_key "stats", "characters"
 end

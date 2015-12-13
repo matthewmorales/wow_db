@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Neckpieces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Icon</th>
+      <th>Quality</th>
+      <th>Itemlevel</th>
+      <th>Armor</th>
+      <th>Context</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @neckpieces.each do |neckpiece| %>
+      <tr>
+        <td><%= neckpiece.name %></td>
+        <td><%= neckpiece.icon %></td>
+        <td><%= neckpiece.quality %></td>
+        <td><%= neckpiece.itemLevel %></td>
+        <td><%= neckpiece.armor %></td>
+        <td><%= neckpiece.context %></td>
+        <td><%= link_to 'Show', neckpiece %></td>
+        <td><%= link_to 'Edit', edit_neckpiece_path(neckpiece) %></td>
+        <td><%= link_to 'Destroy', neckpiece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,0 +1,41 @@
+<%= form_for(@neckpiece) do |f| %>
+  <% if @neckpiece.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@neckpiece.errors.count, "error") %> prohibited this neckpiece from being saved:</h2>
+
+      <ul>
+      <% @neckpiece.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :icon %><br>
+    <%= f.text_field :icon %>
+  </div>
+  <div class="field">
+    <%= f.label :quality %><br>
+    <%= f.number_field :quality %>
+  </div>
+  <div class="field">
+    <%= f.label :itemLevel %><br>
+    <%= f.number_field :itemLevel %>
+  </div>
+  <div class="field">
+    <%= f.label :armor %><br>
+    <%= f.number_field :armor %>
+  </div>
+  <div class="field">
+    <%= f.label :context %><br>
+    <%= f.text_field :context %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  flying: false
+  ground: false
+  aquatic: false
+  jumping: false
+
+two:
+  name: MyString
+  flying: false
+  ground: false
+  aquatic: false
+  jumping: false

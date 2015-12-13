@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Mounts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Flying</th>
+      <th>Ground</th>
+      <th>Aquatic</th>
+      <th>Jumping</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mounts.each do |mount| %>
+      <tr>
+        <td><%= mount.name %></td>
+        <td><%= mount.flying %></td>
+        <td><%= mount.ground %></td>
+        <td><%= mount.aquatic %></td>
+        <td><%= mount.jumping %></td>
+        <td><%= link_to 'Show', mount %></td>
+        <td><%= link_to 'Edit', edit_mount_path(mount) %></td>
+        <td><%= link_to 'Destroy', mount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,0 +1,37 @@
+<%= form_for(@mount) do |f| %>
+  <% if @mount.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mount.errors.count, "error") %> prohibited this mount from being saved:</h2>
+
+      <ul>
+      <% @mount.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :flying %><br>
+    <%= f.check_box :flying %>
+  </div>
+  <div class="field">
+    <%= f.label :ground %><br>
+    <%= f.check_box :ground %>
+  </div>
+  <div class="field">
+    <%= f.label :aquatic %><br>
+    <%= f.check_box :aquatic %>
+  </div>
+  <div class="field">
+    <%= f.label :jumping %><br>
+    <%= f.check_box :jumping %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

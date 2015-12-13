@@ -10,6 +10,7 @@ class CharactersController < ApplicationController
   # GET /characters/1
   # GET /characters/1.json
   def show
+    @stat = @character.stat
   end
 
   # GET /characters/new
@@ -30,16 +31,25 @@ class CharactersController < ApplicationController
     locale = @character.locale
     realm = @character.realm
 
-    char_response = HTTParty.get('https://us.api.battle.net/wow/character/' + realm + '/' + name + '?fields=guild&fields=items&fields=stats&locale=' + locale + '&apikey=buhtgm3aaumgx38c5erhud2trk4vmzd2') 
+    ##### TITLE AND MOUNT
+
+    char_response = HTTParty.get('https://us.api.battle.net/wow/character/' + realm + '/' + name + '?fields=guild&fields=titles&fields=mounts&fields=items&fields=stats&locale=' + locale + '&apikey=buhtgm3aaumgx38c5erhud2trk4vmzd2') 
     character = JSON.parse(char_response.body)
     guild_response = character["guild"]
     stat_response = character["stats"]
     armor_response = character["items"]["chest"]
+    ring_response = character["items"]["finger1"]
+    mount_response = character["mounts"]["collected"]
+    title_response = character["titles"]
+    neck_response = character["items"]["neck"]
+    trinket_response = character["items"]["trinket1"]
     tabard_response = character["items"]["tabard"]
     mh_response = character["items"]["mainHand"]
     oh_response = character["items"]["offHand"]
     guild_response.delete("emblem")
     g_name = guild_response["name"]
+    title_ids = Array.new
+    mount_ids = Array.new
 
     if armor_response != nil && (@armor = Armor.find_by(:name => armor_response["name"])) != nil
       @character.armor_id = @armor.id
@@ -53,10 +63,66 @@ class CharactersController < ApplicationController
       @character.armor_id = @armor.id
     end
 
-    Rails.logger.debug(stat_response)
+    title_response.each do |title|
+      if title != nil && (@title = Title.find_by(:name => title["name"])) != nil
+      elsif title != nil
+        title.delete("selected")
+        title_ids << title["id"]
+        @title = Title.new(title)
+        @title.save
+      end
+    end 
+
+    mount_response.each do |mount|
+      Rails.logger.debug(mount)
+      if mount != nil && (@mount = Mount.find_by(:name => mount["name"])) != nil
+      elsif mount != nil
+        #title.delete("selected")
+        mount_ids << mount["itemId"]
+        mount.delete("creatureId")
+        mount.delete("qualityId")
+        mount.delete("icon")
+        mount["id"] = mount["itemId"]
+        mount.delete("itemId")
+        @mount = Mount.new(mount)
+        @mount.save
+      end
+    end
+
+    if trinket_response != nil && (@trinket = Trinket.find_by(:name => trinket_response["name"])) != nil
+      @character.trinket_id = @trinket.id
+    elsif trinket_response != nil
+      trinket_response.delete("tooltipParams")
+      trinket_response.delete("stats")
+      trinket_response.delete("bonusLists")
+      @trinket = Trinket.new(trinket_response)
+      @trinket.save
+      @character.trinket_id = @trinket.id
+    end
+
+    if ring_response != nil && (@ring = Ring.find_by(:name => ring_response["name"])) != nil
+      @character.ring_id = @ring.id
+    elsif ring_response != nil
+      ring_response.delete("tooltipParams")
+      ring_response.delete("stats")
+      ring_response.delete("bonusLists")
+      @ring = Ring.new(ring_response)
+      @ring.save
+      @character.ring_id = @ring.id
+    end
+
+    if neck_response != nil && (@neckpiece = Neckpiece.find_by(:name => neck_response["name"])) != nil
+      @character.neckpiece_id = @neckpiece.id
+    elsif neck_response != nil
+      neck_response.delete("tooltipParams")
+      neck_response.delete("stats")
+      neck_response.delete("bonusLists")
+      @neckpiece = Neckpiece.new(neck_response)
+      @neckpiece.save
+      @character.neckpiece_id = @neckpiece.id
+    end
 
     if stat_response != nil
-      Rails.logger.debug("********HEY")
       stats = Hash.new
       stats["health"] = stat_response["health"]
       stats["powerType"] = stat_response["powerType"]
@@ -142,8 +208,8 @@ class CharactersController < ApplicationController
     bgroup = character["battlegroup"]
     achv_pts = character["achievementPoints"]
     h_kills = character["totalHonorableKills"]
-    faction = (character["faction"] == 0) ? "A" : "H"
-    gender = (character["gender"] == 0) ? "M" : "F"
+    faction = (character["faction"] == 0) ? "Alliance" : "Horde"
+    gender = (character["gender"] == 0) ? "Male" : "Female"
 
     @character.level = level
     @character.race = race
@@ -153,9 +219,22 @@ class CharactersController < ApplicationController
     @character.honorable_kills = h_kills
     @character.faction = faction
     @character.gender = gender
+    #@character.titles << title_response
+
+    title_ids.each do |id|
+      char_title = Title.find(id)
+      @character.titles << char_title
+    end
+
+    mount_ids.each do |id|
+      char_mount = Mount.find(id)
+      @character.mounts << char_mount
+    end
 
     respond_to do |format|
       if @character.save
+        @stat.character_id = @character.id
+        @stat.save
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render :show, status: :created, location: @character }
       else

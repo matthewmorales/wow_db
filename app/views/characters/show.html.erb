@@ -15,5 +15,37 @@
   <%= @character.realm %>
 </p>
 
-<%= link_to 'Edit', edit_character_path(@character) %> |
+<p>
+  <strong>Level:</strong>
+  <%= @character.level %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @character.gender %>
+</p>
+
+<p>
+  <strong>Faction:</strong>
+  <%= @character.faction %>
+</p>
+
+<p>
+  <strong>Achievment Points:</strong>
+  <%= @character.achievements_points %>
+</p>
+
+<p>
+  <strong>Honorable Kills:</strong>
+  <%= @character.honorable_kills %>
+</p>
+
+<p>
+  <strong>Guild:</strong>
+  <%= @character.guild.name %>
+</p>
+
+<hr>
+
+<%= render "stats/show" %>
 <%= link_to 'Back', characters_path %>

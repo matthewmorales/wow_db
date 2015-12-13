@@ -18,13 +18,11 @@
     <% @mounts.each do |mount| %>
       <tr>
         <td><%= mount.name %></td>
-        <td><%= mount.flying %></td>
-        <td><%= mount.ground %></td>
-        <td><%= mount.aquatic %></td>
-        <td><%= mount.jumping %></td>
+        <td><%= mount.isFlying %></td>
+        <td><%= mount.isGround %></td>
+        <td><%= mount.isAquatic %></td>
+        <td><%= mount.isJumping %></td>
         <td><%= link_to 'Show', mount %></td>
-        <td><%= link_to 'Edit', edit_mount_path(mount) %></td>
-        <td><%= link_to 'Destroy', mount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

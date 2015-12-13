@@ -29,7 +29,7 @@ class CharactersController < ApplicationController
 
     name = URI.encode(@character.name)
     locale = @character.locale
-    realm = @character.realm
+    realm = URI.encode(@character.realm)
 
     ##### TITLE AND MOUNT
 
@@ -75,7 +75,7 @@ class CharactersController < ApplicationController
 
     mount_response.each do |mount|
       Rails.logger.debug(mount)
-      if mount != nil && (@mount = Mount.find_by(:name => mount["name"])) != nil
+      if mount != nil && (@mount = Mount.find_by(:id => mount["itemId"])) != nil
       elsif mount != nil
         #title.delete("selected")
         mount_ids << mount["itemId"]
